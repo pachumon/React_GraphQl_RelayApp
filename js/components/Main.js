@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import API from "../API";
 import LinkStore from "../stores/LinkStore";
+import PropTypes from "prop-types";
 
 let _getAppState = () => {
   return { links: LinkStore.getAllLinks() };
 };
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+class Main extends Component {  
 
-    this.state = _getAppState();
-    this.onChange = this.onChange.bind(this);
-  }
+  state = _getAppState();
+
+  static defaultProps = {
+    limit: 3
+  };
+
+  static propTypes = {
+    limit: PropTypes.number.isRequired
+  };
 
   componentDidMount() {
     API.fetchLinks();
@@ -23,20 +28,21 @@ export default class extends Component {
     LinkStore.removeListener("change", this.onChange);
   }
 
-  onChange() {
+  onChange = () => {
     console.log("4.in view");
-
     this.setState(_getAppState());
-  }
+  };
 
   render() {
-    let content = this.state.links.map((link, index) => {
-      return (
-        <li key={index}>
-          <a href="{link.url}">{link.title}</a>
-        </li>
-      );
-    });
+    let content = this.state.links
+      .slice(0, this.props.limit)
+      .map((link, index) => {
+        return (
+          <li key={index}>
+            <a href="{link.url}">{link.title}</a>
+          </li>
+        );
+      });
     return (
       <div>
         <h3>links</h3>
@@ -45,3 +51,6 @@ export default class extends Component {
     );
   }
 }
+
+
+export default Main;
