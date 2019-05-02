@@ -1,0 +1,4 @@
+{
+  "ignore": [],
+  "watch": ["server.js","./data/schema.js"]
+}

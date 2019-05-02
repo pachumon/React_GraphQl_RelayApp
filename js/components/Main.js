@@ -12,7 +12,7 @@ class Main extends Component {
   state = _getAppState();
 
   static defaultProps = {
-    limit: 3
+    limit: 2
   };
 
   static propTypes = {
