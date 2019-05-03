@@ -24,7 +24,7 @@ var Schema = db => {
   });
 
   let linkType = new GraphQLObjectType({
-    name: "Links",
+    name: "Link",
     fields: () => ({
       _id: { type: GraphQLString },
       title: { type: GraphQLString },

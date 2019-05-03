@@ -43,7 +43,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Links",
+                "name": "Link",
                 "ofType": null
               }
             },
@@ -58,7 +58,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Links",
+        "name": "Link",
         "description": null,
         "fields": [
           {
